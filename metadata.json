@@ -1,0 +1,6 @@
+{
+  "name": "Velvet & Glow Skincare",
+  "description": "Thương hiệu mỹ phẩm hữu cơ phục hồi chuyên sâu từ 100% thực vật - Botanical Luxury Skincare",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

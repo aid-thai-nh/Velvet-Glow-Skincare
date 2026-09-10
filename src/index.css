@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Botanical Couture Apothecary Palette */
+  --color-surface: #FCF9F4;
+  --color-surface-dim: #DCDAD5;
+  --color-surface-bright: #FCF9F4;
+  --color-surface-container-lowest: #FFFFFF;
+  --color-surface-container-low: #F6F3EE;
+  --color-surface-container: #F0EDE9;
+  --color-surface-container-high: #EBE8E3;
+  --color-surface-container-highest: #E5E2DD;
+
+  --color-on-surface: #1C1C19;
+  --color-on-surface-variant: #424843;
+  --color-outline: #727973;
+  --color-outline-variant: #C2C8C1;
+
+  --color-primary: #042112;
+  --color-primary-container: #1A3626;
+  --color-on-primary: #FFFFFF;
+  --color-on-primary-container: #81A08A;
+
+  --color-secondary: #51634D;
+  --color-secondary-container: #D1E6C9;
+  --color-secondary-soft: #A8BCA1;
+  --color-on-secondary-container: #556851;
+
+  --color-tertiary: #D98C7A;
+  --color-tertiary-hover: #C97B69;
+  --color-tertiary-deep: #390C04;
+  --color-tertiary-container: #542115;
+  --color-on-tertiary-container: #D18573;
+}
+
+/* Smooth scrolling and luxury transitions */
+html {
+  scroll-behavior: smooth;
+  background-color: #FCF9F4;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #FCF9F4;
+  color: #1C1C19;
+}
+
+.font-serif-luxury {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+.label-caps {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Subtle botanical shadows */
+.shadow-botanical-card {
+  box-shadow: 0 4px 24px -2px rgba(26, 54, 38, 0.04), 0 2px 6px -1px rgba(217, 140, 122, 0.03);
+}
+
+.shadow-botanical-hover {
+  box-shadow: 0 12px 36px -4px rgba(26, 54, 38, 0.08), 0 4px 12px -2px rgba(217, 140, 122, 0.06);
+}
+
+/* Crisp, professional price rendering with tabular figures */
+.font-price {
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  letter-spacing: -0.015em;
+}
+
+/* Ant Design Botanical Theme harmonization */
+.ant-select .ant-select-selector {
+  font-family: var(--font-sans) !important;
+  background-color: #FAF7F2 !important;
+  border-color: rgba(26, 54, 38, 0.15) !important;
+  border-radius: 12px !important;
+  transition: all 0.2s ease !important;
+}
+
+.ant-select-focused .ant-select-selector,
+.ant-select:hover .ant-select-selector {
+  border-color: #1A3626 !important;
+  box-shadow: 0 0 0 2px rgba(26, 54, 38, 0.08) !important;
+}
+
+.ant-select-dropdown {
+  font-family: var(--font-sans) !important;
+  border-radius: 14px !important;
+  padding: 6px !important;
+  border: 1px solid rgba(26, 54, 38, 0.08) !important;
+  box-shadow: 0 10px 25px -5px rgba(26, 54, 38, 0.1) !important;
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: rgba(26, 54, 38, 0.08) !important;
+  font-weight: 600 !important;
+  color: #042112 !important;
+}
+
