@@ -23,6 +23,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import { Product } from '../types';
 import { PRODUCTS } from '../data/mockData';
+import { ProductSkeletonGrid } from '../components/ProductSkeleton';
 
 interface ProductsPageProps {
   onOpenProductDetail: (product: Product) => void;
@@ -58,6 +59,7 @@ export function ProductsPage({
   // Pagination States
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(6);
+  const [isDataLoading, setIsDataLoading] = useState<boolean>(false);
 
   const categories = [
     { id: 'all', label: 'Tất cả sản phẩm' },
@@ -245,6 +247,15 @@ export function ProductsPage({
     const startIndex = (currentPage - 1) * itemsPerPage;
     return filteredProducts.slice(startIndex, startIndex + itemsPerPage);
   }, [filteredProducts, currentPage, itemsPerPage]);
+
+  // Subtle loading simulation for UX feedback when filters/category changes
+  useEffect(() => {
+    setIsDataLoading(true);
+    const timer = setTimeout(() => {
+      setIsDataLoading(false);
+    }, 280);
+    return () => clearTimeout(timer);
+  }, [selectedCategory, selectedSkinType, selectedConcern, selectedPriceRange, selectedIngredient, sortBy, currentPage, searchQuery]);
 
   const handlePageChange = (page: number) => {
     if (page < 1 || page > totalPages) return;
@@ -594,8 +605,10 @@ export function ProductsPage({
         </div>
       </div>
 
-      {/* Products Grid or Empty State */}
-      {filteredProducts.length === 0 ? (
+      {/* Products Grid or Skeleton Loading or Empty State */}
+      {isDataLoading ? (
+        <ProductSkeletonGrid count={itemsPerPage} />
+      ) : filteredProducts.length === 0 ? (
         /* Empty State */
         <div className="py-20 text-center space-y-4 bg-white rounded-2xl border border-[#1A3626]/8 p-8 max-w-lg mx-auto shadow-2xs">
           <div className="w-16 h-16 bg-[#FAF7F2] text-[#51634D] rounded-full flex items-center justify-center mx-auto">

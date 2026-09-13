@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Star, Heart, Check, ShieldCheck, Droplets, Sun, Moon, ShoppingBag, Sparkles } from 'lucide-react';
+import { X, Star, Heart, Check, ShieldCheck, Droplets, Sun, Moon, ShoppingBag, Sparkles, RefreshCw, FileCheck2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Product } from '../types';
 
@@ -10,6 +10,7 @@ interface ProductDetailModalProps {
   onAddToCart: (product: Product, quantity: number) => void;
   isWishlisted: boolean;
   onToggleWishlist: (product: Product) => void;
+  onOpenBatchVerification?: () => void;
 }
 
 export function ProductDetailModal({
@@ -18,11 +19,14 @@ export function ProductDetailModal({
   onClose,
   onAddToCart,
   isWishlisted,
-  onToggleWishlist
+  onToggleWishlist,
+  onOpenBatchVerification
 }: ProductDetailModalProps) {
   const [selectedImage, setSelectedImage] = useState<string>('');
   const [quantity, setQuantity] = useState(1);
   const [addedAnimation, setAddedAnimation] = useState(false);
+  const [purchaseType, setPurchaseType] = useState<'onetime' | 'subscription'>('onetime');
+  const [subscriptionInterval, setSubscriptionInterval] = useState('30');
 
   if (!product) return null;
 
@@ -188,8 +192,82 @@ export function ProductDetailModal({
                     </div>
                   </div>
 
+                  {/* Subscription & One-time Purchase Selector */}
+                  <div className="space-y-2 p-3 bg-[#F6F3EE] rounded-2xl border border-[#1A3626]/10">
+                    <label
+                      onClick={() => setPurchaseType('onetime')}
+                      className={`flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all border ${
+                        purchaseType === 'onetime'
+                          ? 'bg-white border-[#1A3626] shadow-xs'
+                          : 'border-transparent hover:bg-white/60'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <input
+                          type="radio"
+                          name="purchaseType"
+                          checked={purchaseType === 'onetime'}
+                          onChange={() => setPurchaseType('onetime')}
+                          className="accent-[#1A3626]"
+                        />
+                        <span className="text-xs font-semibold text-[#042112]">Mua một lần</span>
+                      </div>
+                      <span className="font-price text-xs font-bold text-[#042112]">
+                        {product.price.toLocaleString('vi-VN')}₫
+                      </span>
+                    </label>
+
+                    <label
+                      onClick={() => setPurchaseType('subscription')}
+                      className={`flex flex-col p-3 rounded-xl cursor-pointer transition-all border ${
+                        purchaseType === 'subscription'
+                          ? 'bg-white border-[#D98C7A] ring-1 ring-[#D98C7A]/30 shadow-xs'
+                          : 'border-transparent hover:bg-white/60'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2.5">
+                          <input
+                            type="radio"
+                            name="purchaseType"
+                            checked={purchaseType === 'subscription'}
+                            onChange={() => setPurchaseType('subscription')}
+                            className="accent-[#D98C7A]"
+                          />
+                          <div>
+                            <span className="text-xs font-bold text-[#042112] flex items-center gap-1.5">
+                              <span>Giao Định Kỳ Tự Động</span>
+                              <span className="text-[10px] bg-[#D98C7A] text-white px-2 py-0.5 rounded-full font-semibold">
+                                Tiết kiệm 10%
+                              </span>
+                            </span>
+                            <p className="text-[10px] text-[#727973]">Không lo quên mua, hủy bất cứ lúc nào</p>
+                          </div>
+                        </div>
+                        <span className="font-price text-xs font-bold text-[#D98C7A]">
+                          {Math.round(product.price * 0.9).toLocaleString('vi-VN')}₫
+                        </span>
+                      </div>
+
+                      {purchaseType === 'subscription' && (
+                        <div className="mt-2 pt-2 border-t border-[#1A3626]/8 flex items-center justify-between text-xs">
+                          <span className="text-[11px] text-[#51634D]">Chu kỳ nhận hàng:</span>
+                          <select
+                            value={subscriptionInterval}
+                            onChange={(e) => setSubscriptionInterval(e.target.value)}
+                            className="bg-[#FAF7F2] border border-[#1A3626]/15 rounded-lg px-2 py-1 text-xs text-[#042112] font-semibold"
+                          >
+                            <option value="30">Mỗi 30 ngày (Chuẩn 1 chu kỳ sừng)</option>
+                            <option value="45">Mỗi 45 ngày</option>
+                            <option value="60">Mỗi 60 ngày</option>
+                          </select>
+                        </div>
+                      )}
+                    </label>
+                  </div>
+
                   {/* Add to Cart Actions */}
-                  <div className="space-y-3 pt-2">
+                  <div className="space-y-3 pt-1">
                     <div className="flex items-center gap-3">
                       <div className="flex items-center border border-[#1A3626]/15 rounded-full bg-white text-xs">
                         <button
@@ -243,6 +321,20 @@ export function ProductDetailModal({
                         <span>Tặng kèm mẫu thử sinh học</span>
                       </div>
                     </div>
+
+                    {/* Batch Code Transparency Trigger */}
+                    {onOpenBatchVerification && (
+                      <div className="pt-2 border-t border-[#1A3626]/8">
+                        <button
+                          type="button"
+                          onClick={onOpenBatchVerification}
+                          className="w-full py-2 px-3 rounded-xl bg-[#FAF7F2] hover:bg-[#F0EDE9] border border-[#1A3626]/10 text-[#1A3626] text-[11px] font-semibold flex items-center justify-center gap-2 transition-colors"
+                        >
+                          <FileCheck2 className="w-3.5 h-3.5 text-[#D98C7A]" />
+                          <span>Tra cứu chứng thư lô chiết xuất CO2 của sản phẩm</span>
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

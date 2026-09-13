@@ -1,0 +1,189 @@
+/* ==========================================================================
+   VELVET & GLOW BOUTIQUE - STRICT MEDIA QUERIES BREAKPOINTS
+   
+   Explicitly required viewport breakpoints:
+   1. @media (max-width: 575px) - Mobile Small / Standard
+   2. @media (min-width: 540px) and (max-width: 575px) - Mobile Landscape / Phablet transition
+   3. @media (min-width: 576px) and (max-width: 767px) - Large Mobile / Small Tablet
+   4. @media (min-width: 768px) and (max-width: 1023px) - iPad / Tablet Portrait
+   5. @media (min-width: 1024px) and (max-width: 1279px) - Tablet Landscape / Small Laptop
+   6. @media (min-width: 1280px) and (max-width: 1439px) - Standard Desktop
+   7. @media (min-width: 1440px) and (max-width: 1500px) - Large Desktop Display
+   ========================================================================== */
+
+/* 1. Mobile Small / Standard (max-width: 575px) */
+@media (max-width: 575px) {
+  .hero-container {
+    padding-top: 5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+  
+  .hero-heading {
+    font-size: 1.85rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .product-grid-custom {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+  
+  .before-after-box {
+    height: 320px !important;
+  }
+  
+  .checkout-modal-container {
+    max-height: 96vh !important;
+    border-radius: 1.25rem !important;
+    padding: 1rem !important;
+  }
+  
+  .sticky-mobile-cta {
+    display: flex !important;
+  }
+  
+  .quiz-modal-container {
+    padding: 1rem !important;
+    border-radius: 1.25rem !important;
+  }
+  
+  .tab-capsule-scroll {
+    overflow-x: auto !important;
+    padding-bottom: 0.5rem !important;
+    justify-content: flex-start !important;
+  }
+}
+
+/* 2. Mobile Landscape / Phablet transition (min-width: 540px) and (max-width: 575px) */
+@media (min-width: 540px) and (max-width: 575px) {
+  .hero-heading {
+    font-size: 2.15rem !important;
+  }
+  
+  .product-grid-custom {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1rem !important;
+  }
+  
+  .before-after-box {
+    height: 360px !important;
+  }
+}
+
+/* 3. Large Mobile / Small Tablet (min-width: 576px) and (max-width: 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .hero-container {
+    padding-top: 6rem !important;
+    padding-bottom: 3.5rem !important;
+  }
+  
+  .hero-heading {
+    font-size: 2.5rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .product-grid-custom {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1.5rem !important;
+  }
+  
+  .before-after-box {
+    height: 380px !important;
+  }
+  
+  .sticky-mobile-cta {
+    display: flex !important;
+  }
+}
+
+/* 4. iPad / Tablet Portrait (min-width: 768px) and (max-width: 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-heading {
+    font-size: 3.25rem !important;
+  }
+  
+  .product-grid-custom {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 2rem !important;
+  }
+  
+  .before-after-box {
+    height: 440px !important;
+  }
+  
+  .checkout-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .sticky-mobile-cta {
+    display: none !important;
+  }
+}
+
+/* 5. Tablet Landscape / Small Laptop (min-width: 1024px) and (max-width: 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .hero-heading {
+    font-size: 3.75rem !important;
+  }
+  
+  .product-grid-custom {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 1.75rem !important;
+  }
+  
+  .before-after-box {
+    height: 480px !important;
+  }
+  
+  .checkout-grid {
+    grid-template-columns: 1.4fr 1fr !important;
+  }
+  
+  .sticky-mobile-cta {
+    display: none !important;
+  }
+}
+
+/* 6. Standard Desktop (min-width: 1280px) and (max-width: 1439px) */
+@media (min-width: 1280px) and (max-width: 1439px) {
+  .hero-heading {
+    font-size: 4.25rem !important;
+  }
+  
+  .product-grid-custom {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 2rem !important;
+  }
+  
+  .before-after-box {
+    height: 520px !important;
+  }
+  
+  .sticky-mobile-cta {
+    display: none !important;
+  }
+}
+
+/* 7. Large Desktop Display (min-width: 1440px) and (max-width: 1500px) */
+@media (min-width: 1440px) and (max-width: 1500px) {
+  .hero-heading {
+    font-size: 4.75rem !important;
+  }
+  
+  .product-grid-custom {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 2.25rem !important;
+  }
+  
+  .before-after-box {
+    height: 540px !important;
+  }
+  
+  .max-w-boutique {
+    max-width: 1440px !important;
+  }
+  
+  .sticky-mobile-cta {
+    display: none !important;
+  }
+}

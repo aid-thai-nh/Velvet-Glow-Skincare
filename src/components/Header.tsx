@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
   Search,
   Heart,
-  User,
   Menu,
   X,
   ShoppingBag,
@@ -11,7 +10,8 @@ import {
   Calendar,
   Tag,
   PhoneCall,
-  ChevronRight
+  ChevronRight,
+  FileCheck2
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { PageRoute } from '../types';
@@ -26,6 +26,7 @@ interface HeaderProps {
   onOpenWishlist: () => void;
   onOpenConsultation: () => void;
   onOpenDiagnostic?: () => void;
+  onOpenBatchVerification?: () => void;
 }
 
 export function Header({
@@ -37,7 +38,8 @@ export function Header({
   onOpenSearch,
   onOpenWishlist,
   onOpenConsultation,
-  onOpenDiagnostic
+  onOpenDiagnostic,
+  onOpenBatchVerification
 }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -175,13 +177,13 @@ export function Header({
               <Search className="w-4 h-4 sm:w-5 sm:h-5" />
             </motion.button>
 
-            {/* Wishlist Button (Visible on Desktop/Tablet, moved into Mobile Drawer on Mobile) */}
+            {/* Wishlist Button */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               id="header-wishlist-btn"
               onClick={onOpenWishlist}
-              className="hidden sm:flex p-2 text-[#424843] hover:text-[#1A3626] hover:bg-[#1A3626]/5 rounded-full transition-colors relative"
+              className="p-2 text-[#424843] hover:text-[#1A3626] hover:bg-[#1A3626]/5 rounded-full transition-colors relative"
               aria-label="Danh sách yêu thích"
               title="Sản phẩm yêu thích"
             >
@@ -197,38 +199,25 @@ export function Header({
               )}
             </motion.button>
 
-            {/* Consultation Icon (Visible on Desktop, moved into Mobile Drawer on Mobile) */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              id="header-profile-btn"
-              onClick={onOpenConsultation}
-              className="hidden sm:flex p-2 text-[#424843] hover:text-[#1A3626] hover:bg-[#1A3626]/5 rounded-full transition-colors"
-              aria-label="Tư vấn da chuyên gia"
-              title="Tư vấn da chuyên gia"
-            >
-              <User className="w-4 h-4 sm:w-5 sm:h-5" />
-            </motion.button>
-
-            {/* Cart Button: Sleek icon button on mobile, full pill button on desktop */}
+            {/* Cart Button: Refined, elegant pill */}
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               id="header-shop-btn"
               onClick={onOpenCart}
-              className="bg-[#D98C7A] hover:bg-[#C97B69] active:bg-[#B86855] text-white rounded-full transition-colors flex items-center shadow-xs hover:shadow-botanical-card whitespace-nowrap p-2 sm:px-5 sm:py-2.5 relative"
+              className="bg-[#1A3626] hover:bg-[#234633] active:bg-[#042112] text-white rounded-full transition-colors flex items-center shadow-xs hover:shadow-botanical-card whitespace-nowrap p-2 sm:px-4 sm:py-2 relative"
               aria-label="Giỏ hàng"
             >
-              <ShoppingBag className="w-4 h-4 sm:mr-2" />
+              <ShoppingBag className="w-4 h-4 sm:mr-2 text-[#D98C7A]" />
               <span className="hidden sm:inline text-xs font-semibold tracking-wider uppercase">
-                Mua sắm ngay
+                Giỏ hàng
               </span>
               {cartCount > 0 && (
                 <motion.span
                   key={cartCount}
                   initial={{ scale: 1.2 }}
                   animate={{ scale: 1 }}
-                  className="absolute -top-1 -right-1 sm:static sm:ml-2 bg-[#1A3626] sm:bg-white/30 text-white text-[9.5px] sm:text-[10px] w-4 h-4 sm:w-auto sm:h-auto sm:px-1.5 sm:py-0.5 rounded-full flex items-center justify-center font-bold shadow-2xs"
+                  className="absolute -top-1 -right-1 sm:static sm:ml-2 bg-[#D98C7A] text-white text-[9.5px] sm:text-[10px] w-4 h-4 sm:w-auto sm:h-auto sm:px-1.5 sm:py-0.5 rounded-full flex items-center justify-center font-bold shadow-2xs"
                 >
                   {cartCount}
                 </motion.span>
@@ -367,6 +356,28 @@ export function Header({
                     {wishlistCount}
                   </span>
                 </motion.button>
+
+                {/* Utility 4: Batch Verification Transparency */}
+                {onOpenBatchVerification && (
+                  <motion.button
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => {
+                      onOpenBatchVerification();
+                      setMobileMenuOpen(false);
+                    }}
+                    className="w-full text-left p-2.5 rounded-xl bg-white border border-[#1A3626]/10 flex items-center justify-between hover:bg-[#1A3626]/3 transition-colors"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <FileCheck2 className="w-4 h-4 text-[#1A3626]" />
+                      <span className="text-xs font-medium text-[#042112]">
+                        Tra cứu chứng thư lô chiết xuất CO2
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-bold text-[#1A3626] bg-[#1A3626]/8 px-2 py-0.5 rounded-full">
+                      Hồ sơ Lab
+                    </span>
+                  </motion.button>
+                )}
 
                 {/* Promo Voucher Highlight */}
                 <div className="p-3 rounded-xl bg-[#F0ECE6] border border-[#1A3626]/8 flex items-center gap-2.5 text-xs text-[#1A3626]">

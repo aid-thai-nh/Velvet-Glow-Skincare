@@ -626,3 +626,80 @@ export const CLINICAL_STATS = {
   sustainableRecycledPackaging: '100%',
   crueltyFreeCertified: 'Leaping Bunny & PETA'
 };
+
+export const CLINICAL_TRIALS = [
+  {
+    id: 'trial-barrier-14d',
+    title: 'Kiểm Nghiệm Lâm Sàng Phục Hồi Hàng Rào Lipid Sau 14 Ngày',
+    durationWeeks: 2,
+    participantCount: 120,
+    institution: 'Viện Da Liễu Độc Lập Derm-Scan Bio Asia',
+    beforeImage: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&auto=format&fit=crop&q=80',
+    afterImage: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&auto=format&fit=crop&q=80',
+    tewlReduction: 68.4, // -68.4% mất nước
+    erythemaReduction: 82.1, // -82.1% ửng đỏ
+    hydrationIncrease: 94.6, // +94.6% độ ẩm nội sinh
+    keyObservation: '100% người tham gia có làn da nhạy cảm sau treatment nặng ghi nhận cảm giác bỏng rát giảm triệt để sau 72 giờ sử dụng tinh chất phục hồi sinh học.'
+  },
+  {
+    id: 'trial-cellular-28d',
+    title: 'Chu Trình Tái Tạo Tế Bào Sừng & Biểu Bì 28 Ngày Hoàn Chỉnh',
+    durationWeeks: 4,
+    participantCount: 85,
+    institution: 'Trung Tâm Công Nghệ Sinh Học Da Liễu Thụy Sĩ (SBCI)',
+    beforeImage: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=800&auto=format&fit=crop&q=80',
+    afterImage: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop&q=80',
+    tewlReduction: 74.2,
+    erythemaReduction: 89.5,
+    hydrationIncrease: 112.0,
+    keyObservation: 'Mật độ sợi collagen type-1 và mạng lưới ceramides tự nhiên dày đặc trở lại, da lấy lại độ đàn hồi và sắc diện hồng hào tự nhiên.'
+  }
+];
+
+export const VERIFIED_REVIEWS = [
+  {
+    id: 'rev-1',
+    author: 'Bs. Mai Phương Uyên',
+    city: 'Hà Nội',
+    age: 32,
+    skinTypeTag: 'Da treatment mỏng đỏ • Viêm da tiếp xúc',
+    durationUsed: 'Đã dùng 6 tuần',
+    rating: 5,
+    title: 'Cứu cánh thực sự cho làn da sau chuỗi ngày peel hỏng',
+    comment: 'Là bác sĩ chuyên khoa da, tôi vô cùng khắt khe với bảng thành phần. Velvet & Glow giải quyết đúng gốc rễ: tỷ lệ lipid mô phỏng sinh học 3:1:1 và chiết xuất siêu tới hạn hoa trà giúp da tôi dứt hẳn cơn ngứa rát chỉ sau 3 đêm.',
+    verifiedPurchase: true,
+    dermatologistRecommended: true,
+    date: '10/09/2026',
+    productName: 'Serum Phục Hồi Sinh Học Cấp Tế Bào'
+  },
+  {
+    id: 'rev-2',
+    author: 'Nguyễn Thục Quyên',
+    city: 'TP. Hồ Chí Minh',
+    age: 28,
+    skinTypeTag: 'Da dầu thiếu nước • Giãn mao mạch',
+    durationUsed: 'Đã dùng 2 tháng',
+    rating: 5,
+    title: 'Kết cấu thấm như sương, không hề bết rít dưới khí hậu Sài Gòn',
+    comment: 'Mình từng ngại dùng đồ phục hồi vì sợ bí tắc lỗ chân lông. Nhưng dòng serum này thẩm thấu cực kỳ nhanh, lớp kết thúc ráo mịn như nhung. Vùng má đỏ của mình giảm rõ đến 80%.',
+    verifiedPurchase: true,
+    dermatologistRecommended: false,
+    date: '05/09/2026',
+    productName: 'Serum Phục Hồi Sinh Học Cấp Tế Bào'
+  },
+  {
+    id: 'rev-3',
+    author: 'Lê Hoàng Yến Linh',
+    city: 'Đà Nẵng',
+    age: 35,
+    skinTypeTag: 'Da lão hóa sớm • Khô căng bong tróc',
+    durationUsed: 'Đã dùng 3 tuần',
+    rating: 5,
+    title: 'Hàng rào ẩm khỏe lên thấy rõ, makeup ăn tiệp mượt mà',
+    comment: 'Tôi đăng ký gói giao định kỳ mỗi tháng luôn rồi. Mùi hương gỗ trầm và hoa trà thanh nhẹ rất dễ chịu, chuẩn chất spa boutique cao cấp.',
+    verifiedPurchase: true,
+    dermatologistRecommended: true,
+    date: '01/09/2026',
+    productName: 'Kem Tái Tạo Màng Lipid Đa Tầng 3:1:1'
+  }
+];

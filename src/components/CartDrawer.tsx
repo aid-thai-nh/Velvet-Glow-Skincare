@@ -10,6 +10,7 @@ interface CartDrawerProps {
   onUpdateQuantity: (productId: string, quantity: number) => void;
   onRemoveItem: (productId: string) => void;
   onClearCart: () => void;
+  onOpenCheckout?: () => void;
 }
 
 export function CartDrawer({
@@ -18,7 +19,8 @@ export function CartDrawer({
   items,
   onUpdateQuantity,
   onRemoveItem,
-  onClearCart
+  onClearCart,
+  onOpenCheckout
 }: CartDrawerProps) {
   const [selectedSample, setSelectedSample] = useState<string>('sample-serum');
   const [promoCode, setPromoCode] = useState('');
@@ -420,7 +422,14 @@ export function CartDrawer({
                 ) : (
                   <motion.button
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => setIsCheckingOut(true)}
+                    onClick={() => {
+                      if (onOpenCheckout) {
+                        onClose();
+                        onOpenCheckout();
+                      } else {
+                        setIsCheckingOut(true);
+                      }
+                    }}
                     className="w-full py-3.5 bg-[#D98C7A] hover:bg-[#C97B69] active:bg-[#B86855] text-white rounded-full text-xs uppercase font-semibold tracking-wider flex items-center justify-center gap-2 shadow-botanical-card hover:shadow-botanical-hover transition-all"
                   >
                     <span>Tiến hành thanh toán</span>

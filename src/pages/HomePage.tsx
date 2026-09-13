@@ -3,6 +3,9 @@ import { Sparkles, ArrowRight, Droplets, CheckCircle2, ChevronDown, Heart, Eye, 
 import { motion } from 'motion/react';
 import { Product, PageRoute } from '../types';
 import { PRODUCTS, BOUTIQUES } from '../data/mockData';
+import { ClinicalBeforeAfterSection } from '../components/ClinicalBeforeAfterSection';
+import { VerifiedReviewsSection } from '../components/VerifiedReviewsSection';
+import { WeatherSkinAdvisor } from '../components/WeatherSkinAdvisor';
 
 interface HomePageProps {
   onNavigate: (route: PageRoute) => void;
@@ -28,7 +31,7 @@ export function HomePage({
   return (
     <div className="space-y-24 pb-20 overflow-x-hidden">
       {/* 1. HERO SECTION (1440px Unified Container) */}
-      <section className="relative pt-10 sm:pt-16 pb-16 overflow-hidden">
+      <section className="hero-container relative pt-10 sm:pt-16 pb-16 overflow-hidden">
         {/* Ambient Botanical Aura */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[850px] bg-gradient-to-br from-[#A8BCA1]/20 via-[#F6F3EE] to-[#D98C7A]/15 rounded-full blur-3xl pointer-events-none -z-10" />
 
@@ -53,7 +56,7 @@ export function HomePage({
             transition={{ duration: 0.5, delay: 0.1 }}
             className="max-w-4xl mx-auto space-y-5"
           >
-            <h1 className="font-serif-luxury text-4xl sm:text-6xl md:text-7xl font-semibold text-[#042112] leading-[1.14] tracking-tight">
+            <h1 className="hero-heading font-serif-luxury text-4xl sm:text-6xl md:text-7xl font-semibold text-[#042112] leading-[1.14] tracking-tight">
               Quyền Năng Phục Hồi <br className="hidden sm:inline" />
               <span className="italic font-semibold text-[#51634D]">Từ Nguyên Bản</span>
             </h1>
@@ -286,7 +289,7 @@ export function HomePage({
         </div>
 
         {/* Product Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="product-grid-custom grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {PRODUCTS.slice(0, 3).map((product) => {
             const isWish = wishlistIds.includes(product.id);
             return (
@@ -398,6 +401,18 @@ export function HomePage({
           })}
         </div>
       </section>
+
+      {/* 4.1 CLINICAL BEFORE / AFTER INTERACTIVE PROOF */}
+      <ClinicalBeforeAfterSection />
+
+      {/* 4.2 VERIFIED REVIEWS BY SKIN CONCERN */}
+      <VerifiedReviewsSection />
+
+      {/* 4.3 REAL-TIME CLIMATE & WEATHER SKIN ADVISOR */}
+      <WeatherSkinAdvisor
+        onNavigate={onNavigate}
+        onOpenDiagnostic={onOpenDiagnostic}
+      />
 
       {/* 5. ETHICAL & SUSTAINABILITY PROMISES (1440px Container) */}
       <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">

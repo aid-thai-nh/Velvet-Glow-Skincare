@@ -84,3 +84,55 @@ export interface BoutiqueLocation {
   services: string[];
   image: string;
 }
+
+export interface CustomerReview {
+  id: string;
+  author: string;
+  city: string;
+  age: number;
+  skinTypeTag: string;
+  durationUsed: string;
+  rating: number;
+  title: string;
+  comment: string;
+  verifiedPurchase: boolean;
+  dermatologistRecommended?: boolean;
+  date: string;
+  productName: string;
+}
+
+export interface ClinicalTrialData {
+  id: string;
+  title: string;
+  durationWeeks: number;
+  participantCount: number;
+  institution: string;
+  beforeImage: string;
+  afterImage: string;
+  tewlReduction: number; // Mất nước qua biểu bì
+  erythemaReduction: number; // Giảm đỏ
+  hydrationIncrease: number; // Tăng ẩm
+  keyObservation: string;
+}
+
+export interface CheckoutOrder {
+  orderId: string;
+  createdAt: string;
+  items: CartItem[];
+  subtotal: number;
+  discountAmount: number;
+  shippingFee: number;
+  total: number;
+  customer: {
+    fullName: string;
+    phone: string;
+    email: string;
+    address: string;
+    province: string;
+    district: string;
+    note?: string;
+  };
+  paymentMethod: 'vietqr' | 'cod' | 'momo';
+  subscriptionPlan?: 'none' | '30days' | '45days' | '60days';
+  status: 'pending_payment' | 'confirmed' | 'shipping';
+}

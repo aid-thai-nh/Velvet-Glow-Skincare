@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ConfigProvider } from 'antd';
 import { motion, AnimatePresence } from 'motion/react';
 import { PageRoute, Product, CartItem } from './types';
@@ -16,6 +16,10 @@ import { SearchModal } from './components/SearchModal';
 import { WishlistModal } from './components/WishlistModal';
 import { DiagnosticModal } from './components/DiagnosticModal';
 import { ConsultationModal } from './components/ConsultationModal';
+import { CheckoutModal } from './components/CheckoutModal';
+import { StickyMobileCTA } from './components/StickyMobileCTA';
+import { LoadingPage } from './components/LoadingPage';
+import { BatchVerificationModal } from './components/BatchVerificationModal';
 
 export default function App() {
   const [currentRoute, setCurrentRoute] = useState<PageRoute>('home');
@@ -26,15 +30,26 @@ export default function App() {
     }
   ]);
   const [wishlistIds, setWishlistIds] = useState<string[]>([PRODUCTS[0].id]);
+  const [isPageLoading, setIsPageLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    // Elegant entry preloader to ensure DOM and assets hydrate cleanly
+    const timer = setTimeout(() => {
+      setIsPageLoading(false);
+    }, 900);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Modals state
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(PRODUCTS[0]);
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isDiagnosticOpen, setIsDiagnosticOpen] = useState(false);
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+  const [isBatchModalOpen, setIsBatchModalOpen] = useState(false);
 
   const handleOpenProductDetail = (p: Product) => {
     setSelectedProduct(p);
@@ -132,6 +147,7 @@ export default function App() {
         onOpenWishlist={() => setIsWishlistOpen(true)}
         onOpenConsultation={() => setIsConsultationOpen(true)}
         onOpenDiagnostic={() => setIsDiagnosticOpen(true)}
+        onOpenBatchVerification={() => setIsBatchModalOpen(true)}
       />
 
       {/* Main Routed Page Content with smooth page transition */}
@@ -200,6 +216,7 @@ export default function App() {
         onAddToCart={handleAddToCart}
         isWishlisted={selectedProduct ? wishlistIds.includes(selectedProduct.id) : false}
         onToggleWishlist={handleToggleWishlist}
+        onOpenBatchVerification={() => setIsBatchModalOpen(true)}
       />
 
       {/* Cart Drawer */}
@@ -210,6 +227,7 @@ export default function App() {
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
         onClearCart={handleClearCart}
+        onOpenCheckout={() => setIsCheckoutOpen(true)}
       />
 
       {/* Search Modal */}
@@ -240,6 +258,33 @@ export default function App() {
         isOpen={isConsultationOpen}
         onClose={() => setIsConsultationOpen(false)}
       />
+
+      {/* Advanced Market-Ready Checkout Modal */}
+      <CheckoutModal
+        isOpen={isCheckoutOpen}
+        onClose={() => setIsCheckoutOpen(false)}
+        items={cartItems}
+        onOrderSuccess={(order) => {
+          setCartItems([]);
+          console.log('Order created:', order);
+        }}
+      />
+
+      {/* CO2 Extraction Batch Transparency Modal */}
+      <BatchVerificationModal
+        isOpen={isBatchModalOpen}
+        onClose={() => setIsBatchModalOpen(false)}
+      />
+
+      {/* High-Converting Sticky Mobile CTA */}
+      <StickyMobileCTA
+        product={selectedProduct || PRODUCTS[0]}
+        onAddToCart={handleAddToCart}
+        onOpenQuickCart={() => setIsCartOpen(true)}
+      />
+
+      {/* Luxury Botanical Preloader / Initial Loading Screen */}
+      <LoadingPage isLoading={isPageLoading} />
       </div>
     </ConfigProvider>
   );
